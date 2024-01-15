@@ -143,5 +143,4 @@ Projede hızlı ve modern bir geliştirme deneyimi sağlamak amacıyla Vite kull
    - Ödeme başarılı olduğunda kullanıcıya bilgi verilir ve Homepage'e dönebilmesi için bir buton sunulur.
 
 
-<h3>Projenin Canlı Linki</h3>
 
