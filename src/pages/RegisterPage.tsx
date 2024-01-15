@@ -34,10 +34,9 @@ const RegisterPage = () => {
     <div className="bg-zinc-800 h-[100vh] grid place-items-center">
       <div className="bg-black text-white flex flex-col gap-10 py-16 px-32 rounded-lg">
         <div className="flex justify-center">
-          <img
-            className="h-[60px]"
-            src="https://files.sikayetvar.com/lg/cmp/22/225.svg?1522650125"
-            alt="Company Logo"
+        <img
+            className="h-[80px] w-[150px] img-fluid border rounded-br-xl rounded-tr-2xl"
+            src="https://media.licdn.com/dms/image/D560BAQElAsWg_eQQKA/company-logo_100_100/0/1682450696382/lojiperyazilim_logo?e=1713398400&v=beta&t=WL60rncw3s4wGWei53kSJZg9Q2hJu1e0kYHmTlfSQXg"
           />
         </div>
         <h1 className="font-bold text-center text-xl">Lütfen kayıt olunuz</h1>
