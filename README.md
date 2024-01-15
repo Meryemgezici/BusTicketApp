@@ -46,6 +46,10 @@ Ekran üzerinde kullanıcıya bilgilendirme mesajları göstermek için React-To
 
 API için JSON Server kullanıldı. Basit ve hızlı bir şekilde sahte bir API oluşturmak için kullanıldı.
 
+### 11. [Vite](https://vitejs.dev/)
+
+Projede hızlı ve modern bir geliştirme deneyimi sağlamak amacıyla Vite kullanıldı. 
+
 ## Kullanılan Teknolojiler ve Sürümleri
 
 - **@reduxjs/toolkit**: ^2.0.1
