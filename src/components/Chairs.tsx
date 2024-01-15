@@ -3,10 +3,11 @@ import React, { useState } from "react";
 import { TbSteeringWheel } from "react-icons/tb";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "./Loading";
-import { updateChairs } from "../redux/slices/chairsSlice";
-import MaxSeatWarningModal from "./MaxSeatWarningModal";
+import {
+  updateChairs,
+  updateSelectedChairCount,
+} from "../redux/slices/chairsSlice";
 import ChairPopup from "./ChairPopup";
-import { Link } from "react-router-dom";
 import OrderConfirmSection from "./OrderConfirmSection";
 
 interface ChairsProps {
@@ -18,9 +19,10 @@ const Chairs: React.FC<ChairsProps> = ({ price }) => {
     "https://static.thenounproject.com/png/661611-200.png";
   const stateChairs = useSelector((store: RootState) => store.chairs);
   const [selectedChair, setSelectedChair] = useState<number | null>(null);
-  const [selectedChairCount, setSelectedChairCount] = useState<number>(0);
   const dispatch = useDispatch();
   const [maxSeatWarningOpen, setMaxSeatWarningOpen] = useState<boolean>(false);
+
+  console.log(stateChairs.selectedChairCount);
 
   const handleChairClick = (index: number) => {
     setSelectedChair(index);
@@ -35,42 +37,37 @@ const Chairs: React.FC<ChairsProps> = ({ price }) => {
         color: "white",
       };
       dispatch(updateChairs(updatedChairs));
-      if (selectedChairCount > 0) {
-        setSelectedChairCount(selectedChairCount - 1);
+      if (stateChairs.selectedChairCount > 0) {
+        dispatch(updateSelectedChairCount(stateChairs.selectedChairCount - 1));
       }
       setSelectedChair(null);
     }
   };
 
   const handleGenderClick = (id: number, gender: string) => {
-    if (selectedChairCount !== 5) {
-      // Diğer işlemler
-      const updatedChairs = stateChairs.chairs.map(
-        (chair: RootState["chairs"]["data"][0]) =>
-          chair.id === id
-            ? {
-                ...chair,
-                gender: gender,
-                color: "#A7E0C0",
-              }
-            : chair
+    if (stateChairs.selectedChairCount !== 5) {
+      const updatedChairs = stateChairs.chairs.map((chair) =>
+        chair.id === id
+          ? {
+              ...chair,
+              gender: gender,
+              color: "#A7E0C0",
+            }
+          : chair
       );
 
       dispatch(updateChairs(updatedChairs));
       setSelectedChair(null);
     } else {
-      // 5 koltuktan fazlasını seçtiğinde uyarı modalını aç
       setMaxSeatWarningOpen(true);
     }
-    setSelectedChairCount(selectedChairCount + 1);
-  
-    console.log(selectedChairCount); // veya başka işlemler
+    dispatch(updateSelectedChairCount(stateChairs.selectedChairCount + 1));
   };
-  
+
   const closeModal = () => {
     setSelectedChair(null);
     setMaxSeatWarningOpen(false);
-    setSelectedChairCount(5);
+    dispatch(updateSelectedChairCount(5));
   };
 
   const chunkArray = (arr: any[], size: number) => {
@@ -130,7 +127,7 @@ const Chairs: React.FC<ChairsProps> = ({ price }) => {
       </div>
 
       <OrderConfirmSection
-        selectedChairCount={selectedChairCount}
+        selectedChairCount={stateChairs.selectedChairCount}
         price={price}
         maxSeatWarningOpen={maxSeatWarningOpen}
         onCloseModal={closeModal}

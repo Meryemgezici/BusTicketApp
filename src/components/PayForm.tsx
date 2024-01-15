@@ -64,8 +64,8 @@ const PayForm = () => {
         </label>
       </div>
       <button className="bg-green-700 text-white p-2 border rounded-md hover:bg-green-600">
-            Ödemeyi Tamamla
-          </button>
+        Ödemeyi Tamamla
+      </button>
     </div>
   );
 };

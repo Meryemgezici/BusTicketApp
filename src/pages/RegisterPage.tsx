@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 const RegisterPage = () => {
   const navigate = useNavigate();
 
-  const handleSubmit =  (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const target = e.target as typeof e.target & {
       email: { value: string };
@@ -16,25 +16,21 @@ const RegisterPage = () => {
     const email = target.email.value;
     const password = target.password.value;
 
-     createUserWithEmailAndPassword(
-        auth as Auth,
-        email,
-        password
-      ).then(()=>{
+    createUserWithEmailAndPassword(auth as Auth, email, password)
+      .then(() => {
         toast.success("Hesabınız oluşturuldu.");
-        navigate("/");       
+        navigate("/");
       })
-      .catch((err)=>{
-        toast.error(`Üzgünüz, bir hata oluştu. ${err.message}`);       
-      })
-    
+      .catch((err) => {
+        toast.error(`Üzgünüz, bir hata oluştu. ${err.message}`);
+      });
   };
 
   return (
     <div className="bg-zinc-800 h-[100vh] grid place-items-center">
       <div className="bg-black text-white flex flex-col gap-10 py-16 px-32 rounded-lg">
         <div className="flex justify-center">
-        <img
+          <img
             className="h-[80px] w-[150px] img-fluid border rounded-br-xl rounded-tr-2xl"
             src="https://media.licdn.com/dms/image/D560BAQElAsWg_eQQKA/company-logo_100_100/0/1682450696382/lojiperyazilim_logo?e=1713398400&v=beta&t=WL60rncw3s4wGWei53kSJZg9Q2hJu1e0kYHmTlfSQXg"
           />
@@ -48,7 +44,7 @@ const RegisterPage = () => {
               <input
                 className="text-black rounded p-2 shadow-white mt-3 w-full"
                 type="text"
-                id="firstName" 
+                id="firstName"
                 required
               />
             </div>
@@ -57,7 +53,7 @@ const RegisterPage = () => {
               <input
                 className="text-black rounded p-2 shadow-white mt-3 w-full"
                 type="text"
-                id="lastName" 
+                id="lastName"
                 required
               />
             </div>

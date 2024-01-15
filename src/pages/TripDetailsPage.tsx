@@ -24,7 +24,6 @@ const TripDetailsPage = () => {
     setSelectedBus(updatedSelectedBus);
   }, [state.buses, numericId]);
 
-
   return (
     <div className="flex flex-col items-center justify-center w-screen h-screen text-black">
       {state.isLoading && <Loading />}

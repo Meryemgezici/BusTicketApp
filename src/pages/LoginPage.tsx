@@ -17,13 +17,14 @@ const LoginPage = () => {
     const email = target.email.value;
     const password = target.password.value;
 
-    signInWithEmailAndPassword(auth, email, password).then(() => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
         navigate("/homepage");
         toast.success("Hesabınıza giriş yapıldı.");
-    })
-    .catch(()=>{
+      })
+      .catch(() => {
         toast.error(`Lütfen bilgilerinizi doğru giriniz.`);
-    })
+      });
   };
 
   return (

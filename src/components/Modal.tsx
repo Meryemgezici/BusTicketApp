@@ -1,32 +1,35 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 interface ModalProps {
+  isOpen: boolean;
   onClose: () => void;
 }
 
-const Modal: React.FC<ModalProps> = ({ onClose }) => {
-  return (
-    <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-800 bg-opacity-75">
-      <div className="bg-white p-4 rounded-lg">
-        <button className="absolute top-2 right-2 text-gray-700" onClick={onClose}>
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M6 18L18 6M6 6l12 12"
-            ></path>
-          </svg>
-        </button>
+const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
+  if (!isOpen) {
+    return null;
+  }
 
-      </div>
-    </div>
+  return (
+    <>
+      {isOpen && (
+        <div className="fixed inset-0 flex items-center justify-center modal-overlay bg-gray-500 bg-opacity-50 text-black">
+          <div className="flex flex-col gap-7 modal border border-gray-300 bg-white p-4 rounded-md ">
+            <p className="text-xl bg-green-300 p-3 rounded-md">
+              Ödeme Başarılı bir şekilde gerçekleştirildi.
+            </p>
+            <Link
+              to={"/homepage"}
+              className="border rounded-md bg-[#EEFFFF] p-2 text-xl hover:bg-[#B4F2FF] text-center"
+              onClick={onClose}
+            >
+              HomePage Sayfasını Dön
+            </Link>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

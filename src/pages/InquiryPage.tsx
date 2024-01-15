@@ -36,11 +36,10 @@ const InquiryPage = () => {
             <h2 className="text-2xl  text-center">
               {state.filteredBuses[0].date} Tarihindeki Otobüs seferleri
             </h2>
-            
+
             {state.filteredBuses.map((bus) => (
-              <div className="flex flex-col justify-center items-center  gap-10 mx-24 text-black ">       
-                  <TripDetailsCard bus={bus} />
-                  
+              <div className="flex flex-col justify-center items-center  gap-10 mx-24 text-black ">
+                <TripDetailsCard bus={bus} />
               </div>
             ))}
           </div>
@@ -52,10 +51,3 @@ const InquiryPage = () => {
 
 export default InquiryPage;
 
-{
-  /* <Link to={`/tripDetail/${bus.id}`}                     
-                      className={`bg-green-700 text-white p-2 border rounded-md hover:bg-green-600"`}
-                    >
-                     Koltuk Seç
-                    </Link> */
-}

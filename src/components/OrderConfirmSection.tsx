@@ -37,7 +37,10 @@ const OrderConfirmSection: React.FC<OrderConfirmSectionProps> = ({
         Onayla ve Devam et
       </Link>
       {selectedChairCount > 5 && (
-        <MaxSeatWarningModal isModalOpen={maxSeatWarningOpen} onClose={onCloseModal} />
+        <MaxSeatWarningModal
+          isModalOpen={maxSeatWarningOpen}
+          onClose={onCloseModal}
+        />
       )}
     </div>
   );

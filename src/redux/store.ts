@@ -5,7 +5,7 @@ import chairsSlice from "./slices/chairsSlice";
 const store = configureStore({
   reducer: {
     buses: busesReducer,
-    chairs: chairsSlice
+    chairs: chairsSlice,
   },
 });
 

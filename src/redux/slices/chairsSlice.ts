@@ -12,12 +12,14 @@ interface ChairsState {
   chairs: Chair[];
   isLoading: boolean;
   isError: boolean;
+  selectedChairCount: number;
 }
 
 const initialState: ChairsState = {
   chairs: [],
   isLoading: true,
   isError: false,
+  selectedChairCount: 0,
 };
 
 const chairsSlice = createSlice({
@@ -28,23 +30,22 @@ const chairsSlice = createSlice({
       state.chairs = action.payload;
       state.isLoading = false;
       state.isError = false;
-      
+    },
+    updateSelectedChairCount: (state, action: PayloadAction<number>) => {
+      state.selectedChairCount = action.payload;
     },
   },
   extraReducers: (builder) => {
-    // Cevap beklerken
     builder
       .addCase(getChairs.pending, (state) => {
         state.isLoading = true;
         state.isError = false;
       })
-      // Olumlu cevap geldiğinde
       .addCase(getChairs.fulfilled, (state, action) => {
         state.chairs = action.payload;
         state.isLoading = false;
         state.isError = false;
       })
-      // Olumsuz cevap geldiğinde
       .addCase(getChairs.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
@@ -54,4 +55,4 @@ const chairsSlice = createSlice({
 });
 
 export default chairsSlice.reducer;
-export const { updateChairs } = chairsSlice.actions;
+export const { updateChairs, updateSelectedChairCount } = chairsSlice.actions;

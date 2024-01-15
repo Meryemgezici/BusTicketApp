@@ -7,10 +7,8 @@ interface BusPopupProps {
   bus: Bus;
 }
 
-const TripDetailsCard:React.FC<BusPopupProps> = ({ bus }) => {
+const TripDetailsCard: React.FC<BusPopupProps> = ({ bus }) => {
   const location = useLocation();
-
-  // tripdetail sayfasına gidildiğinde Link'i devre dışı bırak
   const isTripDetailPage = location.pathname.includes("/tripDetail");
 
   return (
@@ -47,9 +45,11 @@ const TripDetailsCard:React.FC<BusPopupProps> = ({ bus }) => {
 
       <div className="flex gap-6 justify-center items-center">
         <p className="font-bold">Fiyat:{bus.price}</p>
-        {/* isTripDetailPage true ise Link'i devre dışı bırak */}
-        {isTripDetailPage ? "" : (
-          <Link to={`/tripDetail/${bus.id}`}
+        {isTripDetailPage ? (
+          ""
+        ) : (
+          <Link
+            to={`/tripDetail/${bus.id}`}
             className="bg-green-700 text-white p-2 border rounded-md hover:bg-green-600"
           >
             Koltuk Seç
